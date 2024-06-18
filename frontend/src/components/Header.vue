@@ -1,10 +1,24 @@
 <script setup lang="ts">
 import {HEADER_HEIGHT} from "@/utils/constants";
 
-const headerItems = [
-    'STRONA GŁÓWNA',
-    'OFERTA',
-    'INFORMACJE'
+interface HeaderItems {
+  title: string,
+  path: string,
+}
+
+const headerItems: HeaderItems[] = [
+  {
+    title: 'STRONA GŁÓWNA',
+    path: '/'
+  },
+  {
+    title: 'OFERTA',
+    path: '/oferta'
+  },
+  {
+    title: 'INFORMACJE',
+    path: '/informacje'
+  },
 ]
 
 </script>
@@ -19,9 +33,11 @@ const headerItems = [
         <div v-for="item in headerItems">
           <v-btn
               flat
-              class="header-item h-100">
+              class="header-item h-100"
+              :to="item.path"
+          >
             <p>
-              {{item}}
+              {{item.title}}
             </p>
           </v-btn>
         </div>

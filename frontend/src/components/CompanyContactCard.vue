@@ -86,6 +86,7 @@
 
 .contact-card {
   width: 100%;
+  border-radius: 20px;
 
   &--container {
     height: 500px;
