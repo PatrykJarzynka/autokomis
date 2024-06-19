@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Oferta from "@/views/Oferta.vue";
+import CarOffer from "@/components/CarOffer.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,8 +13,16 @@ const router = createRouter({
     },
     {
       path: '/oferta',
-      name: 'oferta',
-      component: Oferta
+      children: [
+        {
+          path: '',
+          component: Oferta
+        },
+        {
+          path: ':id',
+          component: CarOffer
+        }
+      ]
     }
   ]
 })

@@ -1,16 +1,28 @@
 <script setup lang="ts">
 
 import {temporaryCarItems} from "@/utils/temporary-car-items";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
+
+function handleClick(itemId: string): void {
+  router.push({ path: `/oferta/${itemId}` });
+}
 </script>
 
 <template>
     <v-container class="offer-container">
+
+      <RouterView/>
       <h1 class="main-title">{{'OFERTA'}}</h1>
 
       <div class="offer-items-container">
-        <v-card v-for="car in temporaryCarItems">
+        <v-card
+            v-for="car in temporaryCarItems"
+            @click="handleClick(car.id)"
+        >
             <v-img
-                :src="car.img"
+                :src="car.imgs[0]"
                 :height="400"
                 cover
             />
