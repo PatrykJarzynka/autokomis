@@ -5,19 +5,16 @@ import {computed, onMounted, ref} from "vue";
 import type {CarItem} from "@/types/CarItem";
 import {temporaryCarItems} from "@/utils/temporary-car-items";
 import CarOfferBasicData from "@/components/CarOfferBasicData.vue";
+import CarEquipment from "@/components/CarEquipment.vue";
 
 const { getRouteParam } = useRouteHandler();
 const carItem = ref<CarItem>();
-const selectedItemIndex = ref<number>(0)
+const selectedItemIndex = ref<number>(0);
 
 onMounted(() => {
   const itemId = getRouteParam("id")
   carItem.value = temporaryCarItems.find(carItem => carItem.id === itemId );
 })
-
-function handleUpdate(index: number): void {
-  selectedItemIndex.value = index;
-}
 
 const imgPreviewTranslateNumber = computed((): string => {
   const columnWidth = document.getElementById('img-preview-0')?.clientWidth;
@@ -33,6 +30,16 @@ const imgPreviewTranslateNumber = computed((): string => {
   return '0px';
 })
 
+function handleUpdate(index: number): void {
+  selectedItemIndex.value = index;
+}
+
+function handleImgClick(index: number): void {
+  selectedItemIndex.value = index;
+}
+
+
+
 </script>
 
 <template>
@@ -44,8 +51,9 @@ const imgPreviewTranslateNumber = computed((): string => {
             cols="7"
             class="car-photo-column"
         >
-          <v-row>
+          <v-row class="flex-0-0 pt-5 pb-5">
             <v-carousel
+                v-model="selectedItemIndex"
                 hide-delimiters
                 @update:modelValue="handleUpdate"
             >
@@ -63,6 +71,7 @@ const imgPreviewTranslateNumber = computed((): string => {
                 :id="'img-preview-' + imgIndex"
                 cols="2"
                 class="img-preview-column"
+                @click="handleImgClick(imgIndex)"
             >
               <v-img
                   :class="selectedItemIndex !== imgIndex ? 'no-selected' : ''"
@@ -82,6 +91,10 @@ const imgPreviewTranslateNumber = computed((): string => {
         />
       </v-col>
     </v-row>
+
+    <v-row>
+      <CarEquipment/>
+    </v-row>
   </v-container>
 </template>
 
@@ -99,7 +112,8 @@ $translationNumber: v-bind(imgPreviewTranslateNumber);
 }
 
 .car-photo-column {
-  background-color: red;
+  display: flex;
+  flex-direction: column;
 }
 
 .no-selected::after {
@@ -114,13 +128,16 @@ $translationNumber: v-bind(imgPreviewTranslateNumber);
 }
 
 .img-preview-row {
+  align-items: center;
   flex-wrap: nowrap;
   overflow: hidden;
+  margin: 0;
 }
 
 .img-preview-column {
   transition: transform 0.5s;
   transform: translate($translationNumber, 0px);
+  cursor: pointer;
 }
 
 </style>
