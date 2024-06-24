@@ -6,10 +6,12 @@ import type {CarItem} from "@/types/CarItem";
 import {temporaryCarItems} from "@/utils/temporary-car-items";
 import CarOfferBasicData from "@/components/CarOfferBasicData.vue";
 import CarEquipment from "@/components/CarEquipment.vue";
+import ImgDialog from "@/components/ImgDialog.vue";
 
 const { getRouteParam } = useRouteHandler();
 const carItem = ref<CarItem>();
 const selectedItemIndex = ref<number>(0);
+const imgDialog = ref<InstanceType<typeof ImgDialog>>();
 
 onMounted(() => {
   const itemId = getRouteParam("id")
@@ -38,6 +40,10 @@ function handleImgClick(index: number): void {
   selectedItemIndex.value = index;
 }
 
+function handleSelectedImgClick(): void {
+  imgDialog.value?.openDialog();
+}
+
 
 
 </script>
@@ -61,6 +67,7 @@ function handleImgClick(index: number): void {
                   v-for="img in carItem.imgs"
                   :key="img"
                   :src="img"
+                  @click="handleSelectedImgClick"
               />
             </v-carousel>
           </v-row>
@@ -79,6 +86,13 @@ function handleImgClick(index: number): void {
               />
             </v-col>
           </v-row>
+
+          <template>
+            <ImgDialog
+                ref="imgDialog"
+                :car-img-srcs="carItem.imgs"
+            />
+          </template>
         </v-col>
 
 
@@ -97,6 +111,7 @@ function handleImgClick(index: number): void {
     </v-row>
   </v-container>
 </template>
+
 
 <style scoped lang="scss">
 $translationNumber: v-bind(imgPreviewTranslateNumber);
