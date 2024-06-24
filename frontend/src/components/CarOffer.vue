@@ -1,57 +1,96 @@
 <script setup lang="ts">
 
 import useRouteHandler from "@/composables/routeHandler";
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import type {CarItem} from "@/types/CarItem";
 import {temporaryCarItems} from "@/utils/temporary-car-items";
+import CarOfferBasicData from "@/components/CarOfferBasicData.vue";
 
 const { getRouteParam } = useRouteHandler();
 const carItem = ref<CarItem>();
+const selectedItemIndex = ref<number>(0)
 
 onMounted(() => {
   const itemId = getRouteParam("id")
   carItem.value = temporaryCarItems.find(carItem => carItem.id === itemId );
-  console.log(carItem.value);
+})
+
+function handleUpdate(index: number): void {
+  selectedItemIndex.value = index;
+}
+
+const imgPreviewTranslateNumber = computed((): string => {
+  const columnWidth = document.getElementById('img-preview-0')?.clientWidth;
+  const numberOfVisibleColumns = 6;
+
+  if (columnWidth) {
+    if (selectedItemIndex.value > 5 ) {
+      const difference = Math.abs((numberOfVisibleColumns - selectedItemIndex.value)) + 1 ;
+      return -(columnWidth * difference) + 'px';
+    }
+  }
+
+  return '0px';
 })
 
 </script>
 
 <template>
   <v-container class="container">
-    <v-row class="container--row">
-      <v-col
-          cols="7"
-          class="car-photo-column"
-      >
-        <v-row v-if="carItem">
-          <v-carousel hide-delimiters>
-            <v-carousel-item
-              v-for="img in carItem.imgs"
-              :key="img"
-              :src="img"
-              cover
-            />
-          </v-carousel>
-        </v-row>
+    <v-row
+        v-if="carItem"
+        class="container--row">
+        <v-col
+            cols="7"
+            class="car-photo-column"
+        >
+          <v-row>
+            <v-carousel
+                hide-delimiters
+                @update:modelValue="handleUpdate"
+            >
+              <v-carousel-item
+                  v-for="img in carItem.imgs"
+                  :key="img"
+                  :src="img"
+              />
+            </v-carousel>
+          </v-row>
 
-        <v-row>
+          <v-row class="img-preview-row">
+            <v-col
+                v-for="(img, imgIndex) in carItem.imgs"
+                :id="'img-preview-' + imgIndex"
+                cols="2"
+                class="img-preview-column"
+            >
+              <v-img
+                  :class="selectedItemIndex !== imgIndex ? 'no-selected' : ''"
+                  :src="img"
+              />
+            </v-col>
+          </v-row>
+        </v-col>
 
-        </v-row>
-      </v-col>
 
       <v-col
           cols="5"
           class="car-data-column"
       >
-
+        <CarOfferBasicData
+          :item="carItem"
+        />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <style scoped lang="scss">
+$translationNumber: v-bind(imgPreviewTranslateNumber);
+
 
 .container {
+  padding-block: 80px;
   height: 100%;
 
   &--row {
@@ -63,8 +102,25 @@ onMounted(() => {
   background-color: red;
 }
 
+.no-selected::after {
+  content: '';
+  width: 100%;
+  background-color: white;
+  opacity: 0.5;
+}
+
 .car-data-column {
-  background-color: #153962;
+  background-color: white;
+}
+
+.img-preview-row {
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.img-preview-column {
+  transition: transform 0.5s;
+  transform: translate($translationNumber, 0px);
 }
 
 </style>
