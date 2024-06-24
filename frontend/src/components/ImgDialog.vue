@@ -7,14 +7,10 @@ interface Props {
   carImgSrcs: string[]
 }
 
-defineProps<Props>()
+defineProps<Props>();
 
 const dialog = ref<InstanceType<typeof Dialog>>();
-
-function handleOutsideClick(): void {
-  console.log('click!');
-}
-
+const selectedImgIndex = defineModel();
 
 function openDialog(): void {
   dialog.value?.openDialog()
@@ -45,6 +41,7 @@ defineExpose({
       />
 
       <v-carousel
+          v-model="selectedImgIndex"
           hide-delimiters
           height="100%"
       >
@@ -62,8 +59,8 @@ defineExpose({
 
 .close-dialog-button {
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 1.25rem;
+  top: 1.25rem;
   z-index: 2;
 }
 

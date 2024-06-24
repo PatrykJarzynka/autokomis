@@ -111,8 +111,8 @@
 .info-container {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
-  margin-bottom: 20px;
+  row-gap: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
   .car-title {

@@ -90,6 +90,7 @@ function handleSelectedImgClick(): void {
           <template>
             <ImgDialog
                 ref="imgDialog"
+                v-model="selectedItemIndex"
                 :car-img-srcs="carItem.imgs"
             />
           </template>
