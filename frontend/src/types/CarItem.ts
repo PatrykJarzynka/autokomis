@@ -17,5 +17,8 @@ export interface CarItem {
     liczbaMiejsc: number;
     kraj: string;
     liczbaWlacicieli: number;
+    cena: number;
+    vin: number;
+    rejestracja: string;
 
 }
