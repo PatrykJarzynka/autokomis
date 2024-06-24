@@ -1,3 +1,5 @@
+import type {CarEquipment} from "@/utils/temporary-car-equipment";
+
 type FuelType = 'benzyna' | 'diesel' | 'hybryda'
 type BodyType = 'Sedan' | 'SUV' | 'Minivan' | 'Kompakt' | 'Kombi' | 'Kabriolet' | 'Coupe' | 'Hatchback'
 type DriveType = 'przód' | 'typ' | '4x4'
@@ -20,5 +22,6 @@ export interface CarItem {
     cena: number;
     vin: number;
     rejestracja: string;
+    equipment: CarEquipment;
 
 }
