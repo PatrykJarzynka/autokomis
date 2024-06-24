@@ -64,6 +64,7 @@ function handleSelectedImgClick(): void {
                 @update:modelValue="handleUpdate"
             >
               <v-carousel-item
+                  class="cursor-pointer"
                   v-for="img in carItem.imgs"
                   :key="img"
                   :src="img"

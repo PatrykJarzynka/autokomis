@@ -13,7 +13,7 @@
 @import '../utils/colors.scss';
 
 .equipment-label {
-  font-size: 23px;
+  font-size: 1.438rem;
   color: $secondaryColor;
 }
 
