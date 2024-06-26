@@ -1,4 +1,4 @@
-import type {CarEquipment} from "@/utils/temporary-car-equipment";
+import type {CarEquipment} from "@/types/CarEquipment";
 
 type FuelType = 'benzyna' | 'diesel' | 'hybryda'
 type BodyType = 'Sedan' | 'SUV' | 'Minivan' | 'Kompakt' | 'Kombi' | 'Kabriolet' | 'Coupe' | 'Hatchback'

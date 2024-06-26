@@ -1,5 +1,5 @@
 import type {CarItem} from "@/types/CarItem";
-import {type CarEquipment, TempCarEquipment} from "@/utils/temporary-car-equipment";
+import {tempCarEquipment} from "@/utils/temporary-car-equipment";
 
 export const temporaryCarItems: CarItem[] = [
     {
@@ -40,7 +40,7 @@ export const temporaryCarItems: CarItem[] = [
             'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
             'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
         ],
-        equipment: TempCarEquipment,
+        equipment: tempCarEquipment,
     },
     {
         id: '2',
