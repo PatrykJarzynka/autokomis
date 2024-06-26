@@ -174,4 +174,10 @@ export interface CarEquipment {
 }
 
 export type CarEquipmentKeys = keyof CarEquipment;
-export type CarEquipmentValues = CarEquipment[CarEquipmentKeys];
+export type CarEquipmentValues =
+    keyof CarEquipment["audioMultimedia"] |
+    keyof CarEquipment["safety"] |
+    keyof CarEquipment["comfort"] |
+    keyof CarEquipment["electric"] |
+    keyof CarEquipment["driveAssistance"] |
+    keyof CarEquipment["performance"];

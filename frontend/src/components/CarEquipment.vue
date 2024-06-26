@@ -5,7 +5,7 @@ import {carEquipmentTranslations} from "@/translations/CarEquipmentTranslations"
 import {onMounted, ref} from "vue";
 import type { CarEquipmentKeys, CarEquipmentValues} from "@/types/CarEquipment";
 
-const objectsWithTruthyValues = ref<Record<CarEquipmentKeys, Partial<CarEquipmentValues>>>({
+const objectsWithTruthyValues = ref<Record<CarEquipmentKeys, Partial<Record<CarEquipmentValues,boolean | string>>>>({
   audioMultimedia: {},
   comfort: {},
   driveAssistance: {},
@@ -19,7 +19,7 @@ function setTruthyValues(): void {
     const typedEquipmentItem = equipmentItem as CarEquipmentKeys;
 
     Object.keys(tempCarEquipment[typedEquipmentItem]).forEach(equipmentItemKey => {
-      const typedEquipmentItemKey = equipmentItemKey as keyof CarEquipmentValues;
+      const typedEquipmentItemKey = equipmentItemKey as CarEquipmentValues;
       const equipmentValue = tempCarEquipment[typedEquipmentItem][typedEquipmentItemKey];
 
 
@@ -47,9 +47,9 @@ onMounted(() => {
         <v-expansion-panels>
           <EquipementExpansionPanel
               v-for="equipmentEntry in Object.entries(tempCarEquipment)"
-              :title="carEquipmentTranslations[equipmentEntry[0]].title"
-              :translations="carEquipmentTranslations[equipmentEntry[0]].values"
-              :values="objectsWithTruthyValues[equipmentEntry[0]]"
+              :title="carEquipmentTranslations[(equipmentEntry[0] as CarEquipmentKeys)].title"
+              :translations="carEquipmentTranslations[(equipmentEntry[0] as CarEquipmentKeys)].values"
+              :values="objectsWithTruthyValues[(equipmentEntry[0] as CarEquipmentKeys)]"
           />
         </v-expansion-panels>
   </v-container>

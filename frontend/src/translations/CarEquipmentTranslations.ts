@@ -6,7 +6,7 @@ import {PerformanceTranslations} from "@/translations/PerformanceTranslations";
 import {DriveAssistanceTranslations} from "@/translations/DriveAssistanceTranslations";
 import type {CarEquipmentKeys} from "@/types/CarEquipment";
 
-export type Translations = typeof AudioMultimediaTranslations | typeof SafetyTranslations | typeof ComfortTranslations | typeof ElectricTranslations | typeof PerformanceTranslations | typeof DriveAssistanceTranslations
+type Translations = typeof AudioMultimediaTranslations | typeof SafetyTranslations | typeof ComfortTranslations | typeof ElectricTranslations | typeof PerformanceTranslations | typeof DriveAssistanceTranslations
 
 export const carEquipmentTranslations: Record<CarEquipmentKeys, Translations> = {
     audioMultimedia: AudioMultimediaTranslations,

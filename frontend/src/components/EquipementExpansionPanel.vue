@@ -1,12 +1,11 @@
 <script setup lang="ts">
   import {computed} from "vue";
-  import type {Translations} from "@/translations/CarEquipmentTranslations";
-  import type {CarEquipmentValues} from "@/types/CarEquipment";
+  import type {CarEquipmentKeys, CarEquipmentValues} from "@/types/CarEquipment";
 
   interface Props {
     title: string
-    translations: Translations;
-    values: Partial<CarEquipmentValues>;
+    translations: Partial<Record<CarEquipmentValues,string>>;
+    values:  Partial<Record<CarEquipmentValues,boolean | string>>;
   }
 
   const props = defineProps<Props>();
@@ -23,7 +22,9 @@
 </script>
 
 <template>
-  <v-expansion-panel :title="title">
+  <v-expansion-panel
+      v-if="Object.keys(values).length"
+      :title="title">
     <v-expansion-panel-text class="expansion-panel-content--container">
       <div
           v-for="item in Object.entries(values)"

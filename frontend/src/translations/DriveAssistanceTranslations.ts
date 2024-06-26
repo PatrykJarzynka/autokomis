@@ -1,4 +1,6 @@
-export const DriveAssistanceTranslations= {
+import type {Translation} from "@/types/Translation";
+
+export const DriveAssistanceTranslations: Translation = {
         title: 'System wspomagania kierowcy',
         values: {
                 tempomat: 'Rodzaj tempomatu',

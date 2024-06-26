@@ -1,4 +1,6 @@
-export const ElectricTranslations = {
+import type {Translation} from "@/types/Translation";
+
+export const ElectricTranslations: Translation  = {
     title: 'Samochody elektryczne',
     values: {
         quickCharge: 'Funkcja szybkiego ładowania',

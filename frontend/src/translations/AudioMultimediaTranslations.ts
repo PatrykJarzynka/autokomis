@@ -1,4 +1,6 @@
-export const AudioMultimediaTranslations = {
+import type {Translation} from "@/types/Translation";
+
+export const AudioMultimediaTranslations: Translation = {
     title: 'Audio i multimedia',
     values: {
         appleCarPlay: 'Apple CarPlay',

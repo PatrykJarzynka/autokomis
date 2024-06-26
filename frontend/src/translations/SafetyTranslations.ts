@@ -1,4 +1,6 @@
-export const SafetyTranslations = {
+import type {Translation} from "@/types/Translation";
+
+export const SafetyTranslations: Translation  = {
     title: 'Bezpieczeństwo',
     values: {
         abs: 'ABS',

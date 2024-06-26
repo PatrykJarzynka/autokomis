@@ -1,4 +1,6 @@
-export const ComfortTranslations= {
+import type {Translation} from "@/types/Translation";
+
+export const ComfortTranslations: Translation = {
     title: 'Komfort',
     values: {
         airConditioning: 'Klimatyzacja',
