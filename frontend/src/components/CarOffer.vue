@@ -121,7 +121,6 @@ $translationNumber: v-bind(imgPreviewTranslateNumber);
 
 .container {
   padding-block: 80px;
-  height: 100%;
 
   &--row {
     height: 100%;

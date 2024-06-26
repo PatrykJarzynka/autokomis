@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <v-container class="h-100 d-flex flex-column">
+  <v-container class="h-100 d-flex flex-column ">
     <div class="info-container">
       <p class="car-title text-truncate">
         {{item.title}}

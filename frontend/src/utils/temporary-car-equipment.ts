@@ -6,7 +6,7 @@ type TireType = 'letnie' | 'off-road' | 'wielosezonowe' | 'zimowe'
 type RimsType = 'aluminiowe' | 'stalowe'
 
 export interface CarEquipment {
-    audio_multimedia: {
+    audioMultimedia: {
             appleCarPlay: boolean;
             bluetooth: boolean;
             zestawGlosnomowiacy: boolean;
@@ -161,7 +161,7 @@ export interface CarEquipment {
 }
 
 export const TempCarEquipment: CarEquipment = {
-    audio_multimedia: {
+    audioMultimedia: {
         appleCarPlay: false,
         androidAuto: true,
         bluetooth: false,
