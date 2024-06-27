@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import {HEADER_HEIGHT} from "@/utils/constants";
+import CarDialog from "@/components/Dialogs/CarDialog.vue";
+import {ref} from "vue";
 
 interface HeaderItems {
   title: string,
@@ -21,6 +23,12 @@ const headerItems: HeaderItems[] = [
   },
 ]
 
+const carDialog = ref<InstanceType<typeof CarDialog>>()
+
+function handleNewOfferClick(): void {
+  carDialog.value?.openDialog();
+}
+
 </script>
 
 <template>
@@ -29,8 +37,11 @@ const headerItems: HeaderItems[] = [
       :height="HEADER_HEIGHT"
   >
     <div class="header-container">
-      <v-row justify="center" class="ma-0 h-100">
-        <div v-for="item in headerItems">
+      <v-row justify="center" align="center" class="ma-0 h-100">
+        <div
+            v-for="item in headerItems"
+            class="h-100"
+        >
           <v-btn
               flat
               class="header-item h-100"
@@ -41,9 +52,23 @@ const headerItems: HeaderItems[] = [
             </p>
           </v-btn>
         </div>
+
+        <v-btn
+            class="new-offer-btn"
+            @click="handleNewOfferClick"
+        >
+          <v-icon :icon="'mdi-plus'"/>
+          <p>{{'Nowe ogłoszenie'}}</p>
+        </v-btn>
       </v-row>
     </div>
   </v-app-bar>
+
+  <template>
+    <CarDialog
+        ref="carDialog"
+    />
+  </template>
 </template>
 
 <style lang="scss" scoped>
@@ -67,6 +92,13 @@ const headerItems: HeaderItems[] = [
     position: absolute;
     height: 100%;
     left: 0;
+  }
+
+  .new-offer-btn {
+    position: absolute;
+    right: 20px;
+    background-color: $primaryColor;
+    color: $defaultColor;
   }
 
 </style>

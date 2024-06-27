@@ -1,8 +1,13 @@
 import type {CarEquipment} from "@/types/CarEquipment";
 
-type FuelType = 'benzyna' | 'diesel' | 'hybryda'
-type BodyType = 'Sedan' | 'SUV' | 'Minivan' | 'Kompakt' | 'Kombi' | 'Kabriolet' | 'Coupe' | 'Hatchback'
-type DriveType = 'przód' | 'typ' | '4x4'
+export const driveType = ['przód', 'tył', '4x4'] as const;
+export const fuelType = ['benzyna','diesel','hybryda'] as const;
+export const bodyType = ['Sedan','SUV','Minivan','Kompakt','Kombi','Kabriolet','Coupe','Hatchback'] as const;
+
+
+type FuelType = typeof fuelType[number];
+type BodyType = typeof bodyType[number];
+type DriveType = typeof driveType[number];
 
 export interface CarItem {
     id: string;

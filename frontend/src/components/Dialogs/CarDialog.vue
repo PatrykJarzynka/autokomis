@@ -1,0 +1,50 @@
+<script setup lang="ts">
+
+import Dialog from "@/components/Dialog.vue";
+import {ref} from "vue";
+import CarDialogForm from "@/components/CarOffer/CarDialogForm.vue";
+
+const dialog = ref<InstanceType<typeof Dialog>>();
+
+function openDialog(): void {
+  dialog.value?.openDialog()
+}
+
+function closeDialog(): void {
+  dialog.value?.closeDialog();
+}
+
+defineExpose({
+  openDialog,
+  closeDialog
+})
+</script>
+
+<template>
+  <Dialog
+      class="test"
+      ref="dialog"
+      :opacity="0"
+  >
+    <template #content>
+      <v-card class="car-dialog-container">
+       <v-card-title>{{'Nowe ogłoszenie'}}</v-card-title>
+
+        <v-card-text>
+          <CarDialogForm/>
+        </v-card-text>
+      </v-card>
+
+    </template>
+  </Dialog>
+</template>
+
+<style scoped lang="scss">
+
+
+.car-dialog-container {
+  background-color: white;
+  height: 100%;
+  width: 60%;
+}
+</style>

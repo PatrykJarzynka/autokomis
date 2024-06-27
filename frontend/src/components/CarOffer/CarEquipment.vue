@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import EquipementExpansionPanel from "@/components/EquipementExpansionPanel.vue";
+import EquipementExpansionPanel from "@/components/CarOffer/EquipementExpansionPanel.vue";
 import {tempCarEquipment} from "@/utils/temporary-car-equipment";
 import {carEquipmentTranslations} from "@/translations/CarEquipmentTranslations";
 import {onMounted, ref} from "vue";
@@ -43,7 +43,10 @@ onMounted(() => {
   <v-container class="car-equipment-container">
     <v-divider class="pb-2"/>
 
-        <v-expansion-panels variant="accordion">
+        <v-expansion-panels
+            class="expansion-panels-container"
+            variant="accordion"
+        >
           <EquipementExpansionPanel
               v-for="equipmentEntry in Object.entries(tempCarEquipment)"
               :title="carEquipmentTranslations[(equipmentEntry[0] as CarEquipmentKeys)].title"
@@ -55,8 +58,15 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+@import '../../utils/colors';
+
 .car-equipment-container {
   padding-top: 0;
+}
+
+.expansion-panels-container {
+  border: 2px solid $primaryColor;
+  border-radius: 5px;
 }
 
 </style>

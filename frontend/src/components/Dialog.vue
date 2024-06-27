@@ -3,7 +3,7 @@
 
   interface Props {
     opacity: number;
-    fullscreen: boolean;
+    fullscreen?: boolean;
   }
 
   defineProps<Props>()
@@ -32,11 +32,20 @@
       :opacity="opacity"
   >
     <template #default>
-      <slot name="content"/>
+      <div class="dialog-container">
+        <slot name="content"/>
+      </div>
+
     </template>
   </v-dialog>
 </template>
 
 <style scoped lang="scss">
+
+.dialog-container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
 
 </style>

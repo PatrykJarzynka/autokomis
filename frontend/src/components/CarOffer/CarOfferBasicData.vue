@@ -106,7 +106,7 @@
 </template>
 
 <style scoped lang="scss">
-@import '../utils/colors.scss';
+@import '../../utils/colors';
 
 .info-container {
   display: flex;

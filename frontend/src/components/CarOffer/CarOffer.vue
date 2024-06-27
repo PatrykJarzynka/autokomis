@@ -4,9 +4,9 @@ import useRouteHandler from "@/composables/routeHandler";
 import {computed, onMounted, ref} from "vue";
 import type {CarItem} from "@/types/CarItem";
 import {temporaryCarItems} from "@/utils/temporary-car-items";
-import CarOfferBasicData from "@/components/CarOfferBasicData.vue";
-import CarEquipment from "@/components/CarEquipment.vue";
-import ImgDialog from "@/components/ImgDialog.vue";
+import CarOfferBasicData from "@/components/CarOffer/CarOfferBasicData.vue";
+import CarEquipment from "@/components/CarOffer/CarEquipment.vue";
+import ImgDialog from "@/components/Dialogs/ImgDialog.vue";
 
 const { getRouteParam } = useRouteHandler();
 const carItem = ref<CarItem>();
@@ -129,7 +129,7 @@ function handleSelectedImgClick(): void {
 
 
 <style scoped lang="scss">
-@import '../utils/colors.scss';
+@import '../../utils/colors';
 $translationNumber: v-bind(imgPreviewTranslateNumber);
 
 
@@ -178,6 +178,7 @@ $translationNumber: v-bind(imgPreviewTranslateNumber);
 .description-container {
   background-color: white;
   padding: 20px;
+  border: 2px solid $primaryColor;
   border-radius: 5px;
 }
 

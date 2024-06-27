@@ -82,7 +82,7 @@
 </template>
 
 <style scoped lang="scss">
-@import '../utils/colors.scss';
+@import '../../utils/colors';
 
 .contact-card {
   width: 100%;
