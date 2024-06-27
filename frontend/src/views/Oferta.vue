@@ -14,8 +14,6 @@ function handleClick(itemId: string): void {
     <v-container class="offer-container">
 
       <RouterView/>
-      <h1 class="main-title">{{'OFERTA'}}</h1>
-
       <div class="offer-items-container">
         <v-card
             v-for="car in temporaryCarItems"

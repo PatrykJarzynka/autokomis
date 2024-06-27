@@ -24,7 +24,8 @@
 <template>
   <v-expansion-panel
       v-if="Object.keys(values).length"
-      :title="title">
+  >
+    <v-expansion-panel-title class="expansion-panel-title">{{title}}</v-expansion-panel-title>
     <v-expansion-panel-text class="expansion-panel-content--container">
       <div
           v-for="item in Object.entries(values)"
@@ -33,11 +34,11 @@
         <v-icon :icon="'mdi-check'"/>
 
         <p v-if="isBoolean(item[1])">
-           {{translations[item[0]]}}
+           {{translations[item[0] as CarEquipmentValues]}}
         </p>
 
         <p v-else>
-          {{`${translations[item[0]]} ${item[1]}`}}
+          {{`${translations[item[0] as CarEquipmentValues]} ${item[1]}`}}
         </p>
       </div>
 
@@ -46,6 +47,8 @@
 </template>
 
 <style scoped lang="scss">
+@import '../utils/colors.scss';
+
 $numberOfGridColumns: v-bind(numberOfGridColumns);
 
 .expansion-panel-content {
@@ -57,8 +60,12 @@ $numberOfGridColumns: v-bind(numberOfGridColumns);
       display: grid;
       grid-template-columns: repeat($numberOfGridColumns, 1fr);
     }
-
   }
+}
+
+.expansion-panel-title {
+  font-weight: 600;
+  color: $primaryColor;
 }
 
 </style>

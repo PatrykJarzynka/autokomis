@@ -41,6 +41,11 @@ export const temporaryCarItems: CarItem[] = [
             'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
         ],
         equipment: tempCarEquipment,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies sagittis varius. Mauris a pharetra nulla. Nulla facilisi. Donec suscipit scelerisque ante. Aliquam erat volutpat. Quisque eu posuere ipsum. Sed consequat, quam sit amet dapibus vulputate, ligula purus fermentum lectus, vel fringilla sapien dui vel nisl. Praesent ut tempor diam. Aliquam gravida feugiat elit, nec commodo odio luctus quis. Donec sed feugiat tortor, vitae ornare turpis. In interdum, lectus a facilisis finibus, justo nisl sodales lorem, quis aliquam turpis orci ut augue. Fusce vitae gravida metus, in ultricies sapien. Morbi sed sapien ligula. Donec justo mi, sollicitudin sed placerat ac, suscipit vitae ante.\n' +
+            '\n' +
+            'Curabitur ac diam tempus, efficitur ligula a, tempus diam. Sed nec convallis turpis, nec vehicula sem. Quisque semper, ligula eu interdum gravida, dui dolor imperdiet ligula, in consectetur lacus ipsum imperdiet metus. Nulla sed nulla neque. Fusce pulvinar turpis lectus, id volutpat massa efficitur pharetra. Maecenas quis orci elit. Fusce suscipit pulvinar odio vitae dignissim. Phasellus pellentesque leo ac diam dictum, et posuere ante pellentesque. In id lacus tristique, varius magna et, viverra lacus. Nulla eu tincidunt dolor, quis lobortis ante. Donec eleifend malesuada augue, a finibus enim rhoncus ullamcorper. Maecenas sit amet est orci. Sed eget tempor tortor, vitae bibendum ligula.\n' +
+            '\n' +
+            'Nulla eu leo ut lorem malesuada elementum. Sed consequat semper pulvinar. Nam sit amet cursus mi. Nullam mattis suscipit lacus vel accumsan. Nullam a risus maximus lorem tempus ultrices. Sed sit amet quam vel quam faucibus congue vitae id nisi. Nulla varius orci est, quis ultricies turpis mattis eget. Vivamus volutpat venenatis turpis ut finibus. Donec lacinia fermentum bibendum. Integer neque ipsum, egestas sit amet mi feugiat, commodo pellentesque sem. Mauris vitae justo nec elit consequat maximus eu eget nunc. Morbi lacinia aliquet sem sed luctus. Nulla facilisi. Sed a odio non est luctus eleifend.'
     },
     {
         id: '2',

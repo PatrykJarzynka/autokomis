@@ -109,13 +109,27 @@ function handleSelectedImgClick(): void {
     </v-row>
 
     <v-row>
+      <p class="section-label">{{'Wyposażenie'}}</p>
       <CarEquipment/>
+    </v-row>
+
+    <v-row>
+      <p class="section-label">{{'Opis'}}</p>
+      <v-divider class="pb-2"/>
+
+      <v-container>
+        <div class="description-container elevation-2">
+          <p>{{carItem?.description}}</p>
+        </div>
+      </v-container>
+
     </v-row>
   </v-container>
 </template>
 
 
 <style scoped lang="scss">
+@import '../utils/colors.scss';
 $translationNumber: v-bind(imgPreviewTranslateNumber);
 
 
@@ -154,6 +168,17 @@ $translationNumber: v-bind(imgPreviewTranslateNumber);
   transition: transform 0.5s;
   transform: translate($translationNumber, 0px);
   cursor: pointer;
+}
+
+.section-label {
+  font-size: 1.438rem;
+  color: $secondaryColor;
+}
+
+.description-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
 }
 
 </style>

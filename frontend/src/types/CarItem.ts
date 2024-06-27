@@ -23,5 +23,6 @@ export interface CarItem {
     vin: number;
     rejestracja: string;
     equipment: CarEquipment;
+    description: string
 
 }

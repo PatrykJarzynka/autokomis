@@ -40,11 +40,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-container>
-    <p class="equipment-label">{{'Wyposażenie'}}</p>
-    <v-divider/>
+  <v-container class="car-equipment-container">
+    <v-divider class="pb-2"/>
 
-        <v-expansion-panels>
+        <v-expansion-panels variant="accordion">
           <EquipementExpansionPanel
               v-for="equipmentEntry in Object.entries(tempCarEquipment)"
               :title="carEquipmentTranslations[(equipmentEntry[0] as CarEquipmentKeys)].title"
@@ -56,11 +55,8 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-@import '../utils/colors.scss';
-
-.equipment-label {
-  font-size: 1.438rem;
-  color: $secondaryColor;
+.car-equipment-container {
+  padding-top: 0;
 }
 
 </style>
