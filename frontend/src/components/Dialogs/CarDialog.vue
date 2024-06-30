@@ -30,7 +30,7 @@ defineExpose({
       <v-card class="car-dialog-container">
        <v-card-title>{{'Nowe ogłoszenie'}}</v-card-title>
 
-        <v-card-text>
+        <v-card-text class="h-100 overflow-y-auto">
           <CarDialogForm/>
         </v-card-text>
       </v-card>
@@ -44,7 +44,6 @@ defineExpose({
 
 .car-dialog-container {
   background-color: white;
-  height: 100%;
   width: 60%;
 }
 </style>
