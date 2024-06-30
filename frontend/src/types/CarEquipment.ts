@@ -1,9 +1,18 @@
-type AirConditioningType = 'automatyczna' | 'automatyczna, 2 strefowa' | 'automatyczna, 3 strefowa' | 'automatyczna 4+ strefowa' | 'manualna'
-type UpholsteryType = 'alcantara' | 'czesciowo skorzana' | 'materialowa' | 'skorzana';
-type TempomatType = 'tempomat' | 'tempomat adaptacyjny ACC' | 'tempomat przewidujacy PCC'
-type HeadlightsType = 'lampy bi-ksenonowe' | 'lampy ksenonowe' | 'lampy przednie w technologii LED' | 'reflektory laserowe'
-type TireType = 'letnie' | 'off-road' | 'wielosezonowe' | 'zimowe'
-type RimsType = 'aluminiowe' | 'stalowe'
+export const carEquipmentSelectItems = {
+    airConditioning: ['automatyczna', 'automatyczna, 2 strefowa', 'automatyczna, 3 strefowa', 'automatyczna 4+ strefowa', 'manualna' ] as const,
+    tapicerka: ['alcantara', 'czesciowo skorzana', 'materialowa', 'skorzana'] as const,
+    tempomat: ['tempomat', 'tempomat adaptacyjny ACC', 'tempomat przewidujacy PCC'] as const,
+    reflektory: ['lampy bi-ksenonowe', 'lampy ksenonowe', 'lampy przednie w technologii LED', 'reflektory laserowe'] as const,
+    opony: ['letnie', 'off-road', 'wielosezonowe', 'zimowe'] as const,
+    felgi: ['aluminiowe', 'stalowe'] as const
+}
+
+type AirConditioningType = typeof carEquipmentSelectItems.airConditioning[number];
+type UpholsteryType = typeof carEquipmentSelectItems.tapicerka[number];
+type TempomatType = typeof carEquipmentSelectItems.tempomat[number];
+type HeadlightsType = typeof carEquipmentSelectItems.reflektory[number];
+type TireType = typeof carEquipmentSelectItems.opony[number];
+type RimsType = typeof carEquipmentSelectItems.felgi[number];
 
 
 export interface AudioMultimedia {
@@ -174,10 +183,18 @@ export interface CarEquipment {
 }
 
 export type CarEquipmentKeys = keyof CarEquipment;
-export type CarEquipmentValues =
+export type CarEquipmentValuesKeys =
     keyof CarEquipment["audioMultimedia"] |
     keyof CarEquipment["safety"] |
     keyof CarEquipment["comfort"] |
     keyof CarEquipment["electric"] |
     keyof CarEquipment["driveAssistance"] |
     keyof CarEquipment["performance"];
+
+export type CarEquipmentValues =
+    CarEquipment["audioMultimedia"] |
+    CarEquipment["safety"] |
+    CarEquipment["comfort"] |
+    CarEquipment["electric"] |
+    CarEquipment["driveAssistance"] |
+    CarEquipment["performance"]

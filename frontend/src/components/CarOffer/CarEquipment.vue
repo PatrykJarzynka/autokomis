@@ -3,66 +3,59 @@ import EquipementExpansionPanel from "@/components/CarOffer/EquipementExpansionP
 import {tempCarEquipment} from "@/utils/temporary-car-equipment";
 import {carEquipmentTranslations} from "@/translations/CarEquipmentTranslations";
 import {onMounted, ref} from "vue";
-import type { CarEquipmentKeys, CarEquipmentValues} from "@/types/CarEquipment";
+import type {CarEquipment, CarEquipmentKeys, CarEquipmentValues} from "@/types/CarEquipment";
 
-const objectsWithTruthyValues = ref<Record<CarEquipmentKeys, Partial<Record<CarEquipmentValues,boolean | string>>>>({
-  audioMultimedia: {},
-  comfort: {},
-  driveAssistance: {},
-  electric: {},
-  safety: {},
-  performance: {}
-})
-
-function setTruthyValues(): void {
-  for (const equipmentItem in tempCarEquipment) {
-    const typedEquipmentItem = equipmentItem as CarEquipmentKeys;
-
-    Object.keys(tempCarEquipment[typedEquipmentItem]).forEach(equipmentItemKey => {
-      const typedEquipmentItemKey = equipmentItemKey as CarEquipmentValues;
-      const equipmentValue = tempCarEquipment[typedEquipmentItem][typedEquipmentItemKey];
-
-
-      if(equipmentValue) {
-        objectsWithTruthyValues.value[typedEquipmentItem] = {
-          ...objectsWithTruthyValues.value[typedEquipmentItem],
-          [typedEquipmentItemKey]: equipmentValue
-        };
-      }
-    })
-  }
+interface Props {
+  equipment: CarEquipment;
+  readonly :boolean
 }
 
+const props = defineProps<Props>();
+
+// const objectsWithTruthyValues = ref<CarEquipment>(props.equipment)
+
+// function setTruthyValues(): void {
+//   for (const equipmentItem in tempCarEquipment) {
+//     const typedEquipmentItem = equipmentItem as CarEquipmentKeys;
+//
+//     Object.keys(tempCarEquipment[typedEquipmentItem]).forEach(equipmentItemKey => {
+//       const typedEquipmentItemKey = equipmentItemKey as CarEquipmentValues;
+//       const equipmentValue = tempCarEquipment[typedEquipmentItem][typedEquipmentItemKey];
+//
+//
+//       if(equipmentValue) {
+//         objectsWithTruthyValues.value[typedEquipmentItem] = {
+//           ...objectsWithTruthyValues.value[typedEquipmentItem],
+//           [typedEquipmentItemKey]: equipmentValue
+//         };
+//       }
+//     })
+//   }
+// }
+
 onMounted(() => {
-  setTruthyValues();
+  // setTruthyValues();
 })
 
 </script>
 
 <template>
-  <v-container class="car-equipment-container">
-    <v-divider class="pb-2"/>
-
-        <v-expansion-panels
-            class="expansion-panels-container"
-            variant="accordion"
-        >
-          <EquipementExpansionPanel
-              v-for="equipmentEntry in Object.entries(tempCarEquipment)"
-              :title="carEquipmentTranslations[(equipmentEntry[0] as CarEquipmentKeys)].title"
-              :translations="carEquipmentTranslations[(equipmentEntry[0] as CarEquipmentKeys)].values"
-              :values="objectsWithTruthyValues[(equipmentEntry[0] as CarEquipmentKeys)]"
-          />
-        </v-expansion-panels>
-  </v-container>
+    <v-expansion-panels
+        class="expansion-panels-container"
+        variant="accordion"
+    >
+      <EquipementExpansionPanel
+          v-for="(equipmentValues, equipmentCategory) in equipment"
+          :readonly="readonly"
+          :title="carEquipmentTranslations[equipmentCategory].title"
+          :translations="carEquipmentTranslations[equipmentCategory].values"
+          :values="equipmentValues"
+      />
+    </v-expansion-panels>
 </template>
 
 <style scoped lang="scss">
 @import '../../utils/colors';
-
-.car-equipment-container {
-  padding-top: 0;
-}
 
 .expansion-panels-container {
   border: 2px solid $primaryColor;

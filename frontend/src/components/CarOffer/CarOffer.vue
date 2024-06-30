@@ -110,7 +110,14 @@ function handleSelectedImgClick(): void {
 
     <v-row>
       <p class="section-label">{{'Wyposażenie'}}</p>
-      <CarEquipment/>
+      <v-divider class="pb-2"/>
+      <v-container>
+        <CarEquipment
+            :readonly="true"
+            :equipment="carItem?.equipment"
+        />
+      </v-container>
+
     </v-row>
 
     <v-row>

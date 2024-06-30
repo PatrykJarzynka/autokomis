@@ -10,24 +10,24 @@ type BodyType = typeof bodyType[number];
 type DriveType = typeof driveType[number];
 
 export interface CarItem {
-    id: string;
-    title: string;
-    rocznik: number;
-    przebieg: number;
-    paliwo: FuelType;
-    moc: number;
-    pojemnosc: number;
-    imgs: string[];
-    nadwozie: BodyType;
-    naped: DriveType;
-    liczbaDrzwi: number;
-    liczbaMiejsc: number;
-    kraj: string;
-    liczbaWlacicieli: number;
-    cena: number;
-    vin: number;
-    rejestracja: string;
+    id: string | null;
+    title: string | null;
+    rocznik: number | null;
+    przebieg: number | null;
+    paliwo: FuelType | null;
+    moc: number | null;
+    pojemnosc: number | null;
+    imgs: string[] | null;
+    nadwozie: BodyType | null;
+    naped: DriveType | null;
+    liczbaDrzwi: number | null;
+    liczbaMiejsc: number | null;
+    kraj: string | null;
+    liczbaWlacicieli: number | null;
+    cena: number | null;
+    vin: number | null;
+    rejestracja: string | null;
     equipment: CarEquipment;
-    description: string
+    description: string | null;
 
 }

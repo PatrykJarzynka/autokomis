@@ -1,11 +1,12 @@
 <script setup lang="ts">
   import {computed} from "vue";
-  import type {CarEquipmentKeys, CarEquipmentValues} from "@/types/CarEquipment";
+  import {carEquipmentSelectItems, type CarEquipmentValues, type CarEquipmentValuesKeys} from "@/types/CarEquipment";
 
   interface Props {
-    title: string
-    translations: Partial<Record<CarEquipmentValues,string>>;
-    values:  Partial<Record<CarEquipmentValues,boolean | string>>;
+    title: string;
+    translations: Partial<Record<CarEquipmentValuesKeys,string>>;
+    values:  CarEquipmentValues;
+    readonly: boolean;
   }
 
   const props = defineProps<Props>();
@@ -15,7 +16,7 @@
     return Math.ceil(length / 10);
   })
 
-  function isBoolean(value: boolean | string): value is boolean {
+  function isBoolean(value?: boolean | string): value is boolean {
     return typeof value === "boolean";
   }
 
@@ -28,18 +29,35 @@
     <v-expansion-panel-title class="expansion-panel-title">{{title}}</v-expansion-panel-title>
     <v-expansion-panel-text class="expansion-panel-content--container">
       <div
-          v-for="item in Object.entries(values)"
+          v-for="(itemValue, itemKey) in values"
           class="expansion-panel-content"
       >
-        <v-icon :icon="'mdi-check'"/>
 
-        <p v-if="isBoolean(item[1])">
-           {{translations[item[0] as CarEquipmentValues]}}
-        </p>
+        <div v-if="readonly">
+          <v-icon :icon="'mdi-check'"/>
 
-        <p v-else>
-          {{`${translations[item[0] as CarEquipmentValues]} ${item[1]}`}}
-        </p>
+          <p v-if="isBoolean(itemValue)">
+            {{translations[itemKey]}}
+          </p>
+
+          <p v-else>
+            {{`${translations[itemKey]} ${itemValue}`}}
+          </p>
+        </div>
+
+        <div v-else>
+          <v-checkbox
+              v-if="isBoolean(itemValue)"
+              :label="translations[itemKey]"
+          />
+
+          <v-select
+              v-else
+              variant="outlined"
+              :label="translations[itemKey]"
+              :items="carEquipmentSelectItems[itemKey]"
+          />
+        </div>
       </div>
 
     </v-expansion-panel-text>

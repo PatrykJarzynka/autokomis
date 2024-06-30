@@ -3,8 +3,11 @@
 import Dialog from "@/components/Dialog.vue";
 import {ref} from "vue";
 import CarDialogForm from "@/components/CarOffer/CarDialogForm.vue";
+import type {CarItem} from "@/types/CarItem";
+import {defaultCarItem} from "@/utils/temporary-car-items";
 
 const dialog = ref<InstanceType<typeof Dialog>>();
+const carModel = ref<CarItem>(defaultCarItem);
 
 function openDialog(): void {
   dialog.value?.openDialog()
@@ -31,7 +34,9 @@ defineExpose({
        <v-card-title>{{'Nowe ogłoszenie'}}</v-card-title>
 
         <v-card-text class="h-100 overflow-y-auto">
-          <CarDialogForm/>
+          <CarDialogForm
+              :car-model="carModel"
+          />
         </v-card-text>
       </v-card>
 

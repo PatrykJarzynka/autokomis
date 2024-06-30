@@ -1,5 +1,27 @@
 import type {CarItem} from "@/types/CarItem";
-import {tempCarEquipment} from "@/utils/temporary-car-equipment";
+import {defaultCarEquipment, tempCarEquipment} from "@/utils/temporary-car-equipment";
+
+export const defaultCarItem: CarItem = {
+    id: null,
+    title: null,
+    description: null,
+    moc: null,
+    imgs: null,
+    paliwo: null,
+    rocznik: null,
+    vin: null,
+    pojemnosc: null,
+    przebieg: null,
+    rejestracja: null,
+    kraj: null,
+    liczbaWlacicieli: null,
+    liczbaMiejsc: null,
+    naped: null,
+    liczbaDrzwi: null,
+    cena: null,
+    nadwozie: null,
+    equipment: defaultCarEquipment
+}
 
 export const temporaryCarItems: CarItem[] = [
     {

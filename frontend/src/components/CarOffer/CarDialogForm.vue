@@ -1,24 +1,39 @@
 <script setup lang="ts">
 import { VNumberInput } from 'vuetify/labs/VNumberInput'
-import {bodyType, driveType, fuelType} from "@/types/CarItem";
+import {bodyType, type CarItem, driveType, fuelType} from "@/types/CarItem";
 import useStringConverter from "@/composables/useStringConverter";
+import {ref} from "vue";
+import CarEquipment from "@/components/CarOffer/CarEquipment.vue";
+
+interface Props {
+  carModel: CarItem;
+}
 
 const { upperCaseFirstLetter } = useStringConverter();
 
+const props = defineProps<Props>()
+
 const rules = {
   required: (value:string | number) => !!value || 'To pole nie może pozostać puste',
+}
+
+const carDialogModel = ref<CarItem>(props.carModel);
+
+function submit(): void {
+  console.log(carDialogModel.value);
 }
 
 </script>
 
 <template>
   <v-container>
-    <v-form>
+    <v-form validate-on="submit" @submit.prevent="submit">
       <v-label class="section-label">{{'Informacje podstawowe'}}</v-label>
       <v-divider class="pb-4"/>
 
       <v-container>
         <v-text-field
+            v-model="carModel.title"
             class="pb-3"
             variant="outlined"
             label="Tytuł*"
@@ -28,6 +43,7 @@ const rules = {
         <div class="dialog-content--basic-info">
 
           <v-select
+              v-model="carModel.nadwozie"
               variant="outlined"
               label="Typ nadwozia*"
               :items="bodyType"
@@ -35,6 +51,7 @@ const rules = {
           />
 
           <v-select
+              v-model="carModel.naped"
               variant="outlined"
               label="Napęd*"
               :items="driveType"
@@ -49,6 +66,7 @@ const rules = {
           </v-select>
 
           <v-select
+              v-model="carModel.paliwo"
               variant="outlined"
               label="Paliwo*"
               :items="fuelType"
@@ -63,6 +81,7 @@ const rules = {
           </v-select>
 
           <v-number-input
+              v-model="carModel.rocznik"
               variant="outlined"
               control-variant="split"
               label="Rok produkcji*"
@@ -70,6 +89,7 @@ const rules = {
           />
 
           <v-number-input
+              v-model="carModel.przebieg"
               variant="outlined"
               control-variant="split"
               label="Przebieg [km]*"
@@ -77,6 +97,7 @@ const rules = {
           />
 
           <v-number-input
+              v-model="carModel.moc"
               variant="outlined"
               control-variant="split"
               label="Moc silnika [KM]*"
@@ -85,6 +106,7 @@ const rules = {
           />
 
           <v-number-input
+              v-model="carModel.pojemnosc"
               variant="outlined"
               control-variant="split"
               label="Pojemność silnika [cm³]*"
@@ -92,6 +114,7 @@ const rules = {
           />
 
           <v-number-input
+              v-model="carModel.liczbaDrzwi"
               variant="outlined"
               control-variant="split"
               label="Liczba drzwi*"
@@ -99,6 +122,7 @@ const rules = {
           />
 
           <v-number-input
+              v-model="carModel.liczbaMiejsc"
               variant="outlined"
               control-variant="split"
               label="Liczba miejsc*"
@@ -106,6 +130,7 @@ const rules = {
           />
 
           <v-number-input
+              v-model="carModel.liczbaWlacicieli"
               variant="outlined"
               control-variant="split"
               label="Liczba właścicieli*"
@@ -113,6 +138,7 @@ const rules = {
           />
 
           <v-text-field
+              v-model="carModel.kraj"
               variant="outlined"
               label="Kraj pochodzenia*"
               :rules="[rules.required]"
@@ -120,12 +146,14 @@ const rules = {
           />
 
           <v-text-field
+              v-model="carModel.vin"
               variant="outlined"
               label="Numer VIN*"
               :rules="[rules.required]"
           />
 
           <v-text-field
+              v-model="carModel.rejestracja"
               variant="outlined"
               label="Numer rejestracyjny*"
               :rules="[rules.required]"
@@ -138,8 +166,13 @@ const rules = {
       <v-divider class="pb-4"/>
 
       <v-container>
-
+        <CarEquipment
+            :readonly="false"
+            :equipment="carDialogModel.equipment"
+        />
       </v-container>
+
+      <v-btn type="submit">{{'Submit'}}</v-btn>
     </v-form>
   </v-container>
 </template>
