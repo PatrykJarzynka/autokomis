@@ -53,6 +53,7 @@ export const tempCarEquipment: CarEquipment = {
     },
     comfort: {
         airConditioning: "automatyczna",
+        tapicerka: "czesciowo skorzana",
         cyfrowyKluczyk:  true,
         czujnikDeszczu: false,
         elektryczneSzybyPrzod: true,
@@ -88,7 +89,6 @@ export const tempCarEquipment: CarEquipment = {
         sportowaKierownica: false,
         sportoweFotelePrzod: true,
         sterowanieRadiemKierownica: false,
-        tapicerka: "czesciowo skorzana",
         wycieraczki: false
     },
     driveAssistance: {
@@ -208,6 +208,7 @@ export const defaultCarEquipment: CarEquipment = {
     },
     comfort: {
         airConditioning: null,
+        tapicerka: null,
         cyfrowyKluczyk:  false,
         czujnikDeszczu: false,
         elektryczneSzybyPrzod: false,
@@ -243,11 +244,11 @@ export const defaultCarEquipment: CarEquipment = {
         sportowaKierownica: false,
         sportoweFotelePrzod: false,
         sterowanieRadiemKierownica: false,
-        tapicerka: null,
         wycieraczki: false
     },
     driveAssistance: {
         tempomat: null,
+        reflektory: null,
         asystentJazdyWKorku: false,
         asystentPokonywaniaZakretow: false,
         asystentSwiatelDrogowych:  false,
@@ -280,7 +281,6 @@ export const defaultCarEquipment: CarEquipment = {
         oswietlenieWnetrzaLED: false,
         parkAssistant: false,
         podgrzewaneLusterka: false,
-        reflektory: null,
         regulowanyDyferencjalCentralny: false,
         rozpoznawanieOgarniczeniaPredkosci: false,
         rozpoznawanieZnakowDrogowych: false,
@@ -297,11 +297,11 @@ export const defaultCarEquipment: CarEquipment = {
         systemOdzyskiwaniaEnergii: false,
     },
     performance: {
-        oponyRunFlat: false,
         felgi: null,
+        opony: null,
+        oponyRunFlat: false,
         filtrCzastekStalych: false,
         hamulceKompozytCeramiczny: false,
-        opony: null,
         zawieszenieHydropneumatyczne: false,
         zawieszenieKomfortowe: false,
         zawieszeniePneumatyczne: false,

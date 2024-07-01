@@ -113,8 +113,9 @@ function handleSelectedImgClick(): void {
       <v-divider class="pb-2"/>
       <v-container>
         <CarEquipment
+            v-if="carItem?.equipment"
             :readonly="true"
-            :equipment="carItem?.equipment"
+            :equipment="carItem.equipment"
         />
       </v-container>
 

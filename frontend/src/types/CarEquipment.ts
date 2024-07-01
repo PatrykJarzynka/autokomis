@@ -33,9 +33,9 @@ export interface AudioMultimedia {
 
 export interface Comfort {
     airConditioning: AirConditioningType;
+    tapicerka: UpholsteryType;
     elektrycznyFotelKierowcy: boolean;
     elektrycznyFotelPasazera: boolean;
-    tapicerka: UpholsteryType;
     pogrzewanyFotelKierowcy: boolean;
     pogrzewanyFotelPasazera: boolean;
     regulacjaPodparciaLedzwiowegoKierowca: boolean;

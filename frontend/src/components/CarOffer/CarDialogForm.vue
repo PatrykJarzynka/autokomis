@@ -4,6 +4,7 @@ import {bodyType, type CarItem, driveType, fuelType} from "@/types/CarItem";
 import useStringConverter from "@/composables/useStringConverter";
 import {ref} from "vue";
 import CarEquipment from "@/components/CarOffer/CarEquipment.vue";
+import DragDropImg from "@/components/CarOffer/DragDropImg.vue";
 
 interface Props {
   carModel: CarItem;
@@ -172,6 +173,21 @@ function submit(): void {
         />
       </v-container>
 
+      <v-label class="section-label">{{'Zdjęcia i opis'}}</v-label>
+      <v-divider class="pb-4"/>
+
+      <v-container class="description-container">
+          <DragDropImg/>
+
+          <v-textarea
+              class="description-container"
+              :style="{flex: 1}"
+              auto-grow
+              variant="outlined"
+              hide-details
+          />
+      </v-container>
+
       <v-btn type="submit">{{'Submit'}}</v-btn>
     </v-form>
   </v-container>
@@ -192,6 +208,12 @@ function submit(): void {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px
   }
+}
+
+.description-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
 }
 
 </style>

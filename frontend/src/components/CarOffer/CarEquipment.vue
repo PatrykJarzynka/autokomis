@@ -3,7 +3,7 @@ import EquipementExpansionPanel from "@/components/CarOffer/EquipementExpansionP
 import {tempCarEquipment} from "@/utils/temporary-car-equipment";
 import {carEquipmentTranslations} from "@/translations/CarEquipmentTranslations";
 import {onMounted, ref} from "vue";
-import type {CarEquipment, CarEquipmentKeys, CarEquipmentValues} from "@/types/CarEquipment";
+import type {CarEquipment, CarEquipmentKeys, CarEquipmentValues, CarEquipmentValuesKeys} from "@/types/CarEquipment";
 
 interface Props {
   equipment: CarEquipment;
@@ -12,29 +12,31 @@ interface Props {
 
 const props = defineProps<Props>();
 
-// const objectsWithTruthyValues = ref<CarEquipment>(props.equipment)
+const equipmentState = ref<CarEquipment>({} as CarEquipment);
 
-// function setTruthyValues(): void {
-//   for (const equipmentItem in tempCarEquipment) {
-//     const typedEquipmentItem = equipmentItem as CarEquipmentKeys;
-//
-//     Object.keys(tempCarEquipment[typedEquipmentItem]).forEach(equipmentItemKey => {
-//       const typedEquipmentItemKey = equipmentItemKey as CarEquipmentValues;
-//       const equipmentValue = tempCarEquipment[typedEquipmentItem][typedEquipmentItemKey];
-//
-//
-//       if(equipmentValue) {
-//         objectsWithTruthyValues.value[typedEquipmentItem] = {
-//           ...objectsWithTruthyValues.value[typedEquipmentItem],
-//           [typedEquipmentItemKey]: equipmentValue
-//         };
-//       }
-//     })
-//   }
-// }
+function setTruthyValues(): void {
+  for (const equipmentCategory in props.equipment) {
+    const typedEquipmentItem = equipmentCategory as CarEquipmentKeys;
+
+    Object.keys(props.equipment[typedEquipmentItem]).forEach(equipmentItemKey => {
+      const typedEquipmentItemKey = equipmentItemKey as CarEquipmentValuesKeys;
+      const equipmentValue = props.equipment[typedEquipmentItem][typedEquipmentItemKey];
+      if(equipmentValue) {
+        equipmentState.value[typedEquipmentItem] = {
+          ...equipmentState.value[typedEquipmentItem],
+          [typedEquipmentItemKey]: equipmentValue
+        };
+      }
+    })
+  }
+}
 
 onMounted(() => {
-  // setTruthyValues();
+  if (props.readonly) {
+    setTruthyValues();
+  } else {
+    equipmentState.value = props.equipment;
+  }
 })
 
 </script>
@@ -45,7 +47,7 @@ onMounted(() => {
         variant="accordion"
     >
       <EquipementExpansionPanel
-          v-for="(equipmentValues, equipmentCategory) in equipment"
+          v-for="(equipmentValues, equipmentCategory) in equipmentState"
           :readonly="readonly"
           :title="carEquipmentTranslations[equipmentCategory].title"
           :translations="carEquipmentTranslations[equipmentCategory].values"

@@ -30,7 +30,7 @@ defineExpose({
       :opacity="0"
   >
     <template #content>
-      <v-card class="car-dialog-container">
+      <v-card class="car-dialog-container elevation-24">
        <v-card-title>{{'Nowe ogłoszenie'}}</v-card-title>
 
         <v-card-text class="h-100 overflow-y-auto">

@@ -30,10 +30,12 @@
     <v-expansion-panel-text class="expansion-panel-content--container">
       <div
           v-for="(itemValue, itemKey) in values"
-          class="expansion-panel-content"
       >
 
-        <div v-if="readonly">
+        <div
+            v-if="readonly"
+            class="expansion-panel-content"
+        >
           <v-icon :icon="'mdi-check'"/>
 
           <p v-if="isBoolean(itemValue)">
@@ -49,11 +51,13 @@
           <v-checkbox
               v-if="isBoolean(itemValue)"
               :label="translations[itemKey]"
+              hide-details
           />
 
           <v-select
               v-else
               variant="outlined"
+              :style="{flex: 1}"
               :label="translations[itemKey]"
               :items="carEquipmentSelectItems[itemKey]"
           />
@@ -77,6 +81,7 @@ $numberOfGridColumns: v-bind(numberOfGridColumns);
     :deep(.v-expansion-panel-text__wrapper) {
       display: grid;
       grid-template-columns: repeat($numberOfGridColumns, 1fr);
+      column-gap: 10px;
     }
   }
 }
