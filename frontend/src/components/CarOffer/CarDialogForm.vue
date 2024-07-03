@@ -187,8 +187,6 @@ function submit(): void {
               hide-details
           />
       </v-container>
-
-      <v-btn type="submit">{{'Submit'}}</v-btn>
     </v-form>
   </v-container>
 </template>

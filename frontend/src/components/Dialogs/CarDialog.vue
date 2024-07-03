@@ -28,17 +28,14 @@ defineExpose({
       class="test"
       ref="dialog"
       :opacity="0"
+      title="Nowe ogłoszenie"
   >
     <template #content>
-      <v-card class="car-dialog-container elevation-24">
-       <v-card-title>{{'Nowe ogłoszenie'}}</v-card-title>
-
-        <v-card-text class="h-100 overflow-y-auto">
+        <v-card-text class="h-100">
           <CarDialogForm
               :car-model="carModel"
           />
         </v-card-text>
-      </v-card>
 
     </template>
   </Dialog>
@@ -46,9 +43,4 @@ defineExpose({
 
 <style scoped lang="scss">
 
-
-.car-dialog-container {
-  background-color: white;
-  width: 60%;
-}
 </style>

@@ -142,28 +142,9 @@ $numberOfGridRows: v-bind(numberOfGridRows);
   grid-template-rows: repeat($numberOfGridRows, 150px);
   gap: 10px;
   padding: 10px;
-
-  .main-img {
-    grid-column: 1/3;
-    grid-row:1/3;
-  }
-
-  .main-img::after {
-    content:"Zdjęcie główne";
-    width: fit-content;
-    height: 20px;
-    background-color: $accentColor;
-    color: $defaultColor;
-    position: absolute;
-    bottom: 0;
-    padding-inline: 5px;
-    border-radius: 5px;
-  }
-
-  .preview-img {
-    border: 2px solid $primaryColor;
-    border-radius: 10px;
-  }
+  max-height: 650px;
+  overflow-y: auto;
+  grid-auto-rows: 150px;
 }
 
 .no-uploaded-images-container {

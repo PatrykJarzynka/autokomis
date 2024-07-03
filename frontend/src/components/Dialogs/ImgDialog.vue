@@ -32,6 +32,7 @@ defineExpose({
       ref="dialog"
       :fullscreen="true"
       :opacity="1"
+      :hide-actions="true"
   >
     <template #content>
       <v-btn

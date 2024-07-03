@@ -89,7 +89,6 @@ defineProps<Props>()
   .hover-img {
     border: 2px solid $primaryColor;
     border-radius: 10px;
-    height: 100%;
   }
 
   .icon-delete {
