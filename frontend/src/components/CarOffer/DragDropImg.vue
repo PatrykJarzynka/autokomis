@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import {computed, ref} from "vue";
+import HoverImg from "@/components/CarOffer/HoverImg.vue";
+import { v4 as uuidv4 } from 'uuid';
+import {remove} from "lodash";
 
   interface FileInterface {
+    id: string;
     name: string;
     url: string;
   }
@@ -40,6 +44,7 @@ import {computed, ref} from "vue";
         return
       } else {
         localFiles.value.push({
+          id: uuidv4(),
           name: file.name,
           url: URL.createObjectURL(file)
         })
@@ -51,6 +56,10 @@ import {computed, ref} from "vue";
     let input = document.createElement('input');
     input.type = 'file';
     input.click();
+  }
+
+  function handleDelete(id: string): void {
+    remove(localFiles.value, (file) => file.id === id);
   }
 
 
@@ -88,23 +97,22 @@ import {computed, ref} from "vue";
       </div>
 
 
-
-
       <div
           v-else
           class="preview-container"
       >
-        <v-img
-            class="main-img preview-img"
+        <HoverImg
+            :file-id="localFiles[0].id"
             :src="localFiles[0].url"
-            cover
+            :main-img="true"
+            @delete="handleDelete"
         />
 
-        <v-img
+        <HoverImg
             v-for="file in localFiles.slice(1,localFiles.length)"
-            class="preview-img"
+            :file-id="file.id"
             :src="file.url"
-            cover
+            @delete="handleDelete"
         />
 
       </div>
