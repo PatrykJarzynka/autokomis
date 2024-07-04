@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, ref} from "vue";
+import {computed, ref, watch} from "vue";
 import HoverImg from "@/components/CarOffer/HoverImg.vue";
 import { v4 as uuidv4 } from 'uuid';
 import {remove} from "lodash";
@@ -10,9 +10,21 @@ import {remove} from "lodash";
     url: string;
   }
 
+  interface Props {
+    imgUrls?: string[] | null;
+  }
+
+  const props = defineProps<Props>();
+
   const allowedFileTypes = ['image/jpeg','image/gif','image/png','image/jpg'];
   const localFiles = ref<FileInterface[]>([]);
   const isDragging = ref<boolean>(false);
+
+watch(() => props.imgUrls, (newImgs) => {
+  if (newImgs) {
+    gege(newImgs)
+  }
+}, {immediate: true})
 
   const numberOfGridRows = computed(() => {
     return Math.ceil(localFiles.value.length / 4);
@@ -60,6 +72,16 @@ import {remove} from "lodash";
 
   function handleDelete(id: string): void {
     remove(localFiles.value, (file) => file.id === id);
+  }
+
+  function gege(imgUrls: string[]): void {
+    imgUrls.forEach(imgUrl => {
+      localFiles.value.push({
+        id: uuidv4(),
+        name: 'testName',
+        url: imgUrl,
+      })
+    })
   }
 
 

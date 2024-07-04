@@ -48,9 +48,11 @@
         </div>
 
         <div v-else>
+
           <v-checkbox
               v-if="isBoolean(itemValue)"
               :label="translations[itemKey]"
+              :model-value="itemValue"
               hide-details
           />
 
@@ -60,6 +62,7 @@
               :style="{flex: 1}"
               :label="translations[itemKey]"
               :items="carEquipmentSelectItems[itemKey]"
+              :model-value="itemValue"
           />
         </div>
       </div>

@@ -45,11 +45,17 @@
 
         <v-card-actions v-if="!hideActions">
           <div class="dialog-actions">
-            <v-btn class="action-btn">
+            <v-btn
+                class="action-btn"
+                @click="closeDialog"
+            >
               <span class="action-btn--content">{{'ZAMKNIJ'}}</span>
             </v-btn>
 
-            <v-btn class="action-btn">
+            <v-btn
+                class="action-btn"
+                @click="closeDialog"
+            >
               <span class="action-btn--content">{{'ZAPISZ'}}</span>
             </v-btn>
 

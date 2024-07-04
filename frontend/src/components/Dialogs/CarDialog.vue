@@ -1,15 +1,22 @@
 <script setup lang="ts">
 
 import Dialog from "@/components/Dialog.vue";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import CarDialogForm from "@/components/CarOffer/CarDialogForm.vue";
 import type {CarItem} from "@/types/CarItem";
 import {defaultCarItem} from "@/utils/temporary-car-items";
 
+
+
+
 const dialog = ref<InstanceType<typeof Dialog>>();
 const carModel = ref<CarItem>(defaultCarItem);
 
-function openDialog(): void {
+function openDialog(carItem?: CarItem): void {
+  if (carItem) {
+    carModel.value = carItem
+  }
+
   dialog.value?.openDialog()
 }
 
@@ -25,7 +32,6 @@ defineExpose({
 
 <template>
   <Dialog
-      class="test"
       ref="dialog"
       :opacity="0"
       title="Nowe ogłoszenie"

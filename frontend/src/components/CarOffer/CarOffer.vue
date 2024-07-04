@@ -7,11 +7,15 @@ import {temporaryCarItems} from "@/utils/temporary-car-items";
 import CarOfferBasicData from "@/components/CarOffer/CarOfferBasicData.vue";
 import CarEquipment from "@/components/CarOffer/CarEquipment.vue";
 import ImgDialog from "@/components/Dialogs/ImgDialog.vue";
+import CarDialog from "@/components/Dialogs/CarDialog.vue";
+import ConfirmationDialog from "@/components/Dialogs/ConfirmationDialog.vue";
 
 const { getRouteParam } = useRouteHandler();
 const carItem = ref<CarItem>();
 const selectedItemIndex = ref<number>(0);
 const imgDialog = ref<InstanceType<typeof ImgDialog>>();
+const carDialog = ref<InstanceType<typeof CarDialog>>();
+const confirmationDialog = ref<InstanceType<typeof ConfirmationDialog>>()
 
 onMounted(() => {
   const itemId = getRouteParam("id")
@@ -44,12 +48,44 @@ function handleSelectedImgClick(): void {
   imgDialog.value?.openDialog();
 }
 
+function handleEditOffer(): void {
+  carDialog.value?.openDialog(carItem.value);
+}
+
+function handleDeleteOffer(): void {
+  confirmationDialog.value?.openDialog();
+}
+
 
 
 </script>
 
 <template>
   <v-container class="container">
+    <v-row class="action-buttons-container">
+      <v-btn
+          class="action-button"
+          :to="'/oferta'"
+      >
+        {{'POWRÓT DO OFERTY'}}
+      </v-btn>
+
+      <div class="offer-buttons-container">
+        <v-btn
+            class="action-button"
+            @click="handleEditOffer"
+        >
+          {{'EDYTUJ'}}
+        </v-btn>
+
+        <v-btn
+            class="action-button"
+            @click="handleDeleteOffer"
+        >
+          {{'USUŃ'}}
+        </v-btn>
+      </div>
+    </v-row>
     <v-row
         v-if="carItem"
         class="container--row">
@@ -133,6 +169,16 @@ function handleSelectedImgClick(): void {
 
     </v-row>
   </v-container>
+
+  <template >
+    <CarDialog
+        ref="carDialog"
+    />
+
+    <ConfirmationDialog
+        ref="confirmationDialog"
+    />
+  </template>
 </template>
 
 
@@ -141,8 +187,25 @@ function handleSelectedImgClick(): void {
 $translationNumber: v-bind(imgPreviewTranslateNumber);
 
 
+.action-buttons-container {
+  justify-content: space-between;
+  padding-bottom: 20px;
+
+  .offer-buttons-container {
+    display: flex;
+    column-gap: 20px;
+  }
+
+  .action-button {
+    background-color: $primaryColor;
+    color: $defaultColor;
+  }
+}
+
+
 .container {
-  padding-block: 80px;
+  padding-top: 40px;
+  padding-bottom: 80px;
 
   &--row {
     height: 100%;

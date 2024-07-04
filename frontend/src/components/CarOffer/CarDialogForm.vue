@@ -2,7 +2,6 @@
 import { VNumberInput } from 'vuetify/labs/VNumberInput'
 import {bodyType, type CarItem, driveType, fuelType} from "@/types/CarItem";
 import useStringConverter from "@/composables/useStringConverter";
-import {ref} from "vue";
 import CarEquipment from "@/components/CarOffer/CarEquipment.vue";
 import DragDropImg from "@/components/CarOffer/DragDropImg.vue";
 
@@ -12,23 +11,18 @@ interface Props {
 
 const { upperCaseFirstLetter } = useStringConverter();
 
-const props = defineProps<Props>()
+defineProps<Props>()
 
 const rules = {
   required: (value:string | number) => !!value || 'To pole nie może pozostać puste',
 }
 
-const carDialogModel = ref<CarItem>(props.carModel);
-
-function submit(): void {
-  console.log(carDialogModel.value);
-}
 
 </script>
 
 <template>
   <v-container>
-    <v-form validate-on="submit" @submit.prevent="submit">
+    <v-form validate-on="submit">
       <v-label class="section-label">{{'Informacje podstawowe'}}</v-label>
       <v-divider class="pb-4"/>
 
@@ -169,7 +163,7 @@ function submit(): void {
       <v-container>
         <CarEquipment
             :readonly="false"
-            :equipment="carDialogModel.equipment"
+            :equipment="carModel.equipment"
         />
       </v-container>
 
@@ -177,11 +171,14 @@ function submit(): void {
       <v-divider class="pb-4"/>
 
       <v-container class="description-container">
-          <DragDropImg/>
+          <DragDropImg
+              :img-urls="carModel.imgs"
+          />
 
           <v-textarea
               class="description-container"
               :style="{flex: 1}"
+              :model-value="carModel.description"
               auto-grow
               variant="outlined"
               hide-details

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import EquipementExpansionPanel from "@/components/CarOffer/EquipementExpansionPanel.vue";
-import {tempCarEquipment} from "@/utils/temporary-car-equipment";
 import {carEquipmentTranslations} from "@/translations/CarEquipmentTranslations";
-import {onMounted, ref} from "vue";
+import {onMounted, ref, watch} from "vue";
 import type {CarEquipment, CarEquipmentKeys, CarEquipmentValues, CarEquipmentValuesKeys} from "@/types/CarEquipment";
 
 interface Props {
@@ -38,7 +37,6 @@ onMounted(() => {
     equipmentState.value = props.equipment;
   }
 })
-
 </script>
 
 <template>
