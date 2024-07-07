@@ -79,5 +79,6 @@ function handleClick(itemId: string): void {
     font-size: 22px;
     font-weight: 500;
     color: $accentColor;
+
   }
 </style>
