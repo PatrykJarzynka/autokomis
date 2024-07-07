@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import CompanyOfferCard from "@/components/CompanyOfferCard.vue";
+import CompanyOfferCard from "@/components/Offer/CompanyOfferCard.vue";
 import {companyItems} from "@/utils/company-items";
 </script>
 
@@ -15,7 +15,7 @@ import {companyItems} from "@/utils/company-items";
 </template>
 
 <style scoped lang="scss">
-@import '../utils/colors.scss';
+@import '../../utils/colors';
 
 .offer-container {
   width: 100%;

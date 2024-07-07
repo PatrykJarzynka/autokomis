@@ -35,7 +35,7 @@ import {companyItems} from "@/utils/company-items";
 </template>
 
 <style scoped lang="scss">
-@import '../utils/colors.scss';
+@import '../../utils/colors';
 
 @keyframes slideInFromLeft {
   0% {
