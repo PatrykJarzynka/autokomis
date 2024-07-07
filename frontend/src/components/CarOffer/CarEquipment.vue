@@ -19,9 +19,9 @@ function setTruthyValues(): void {
 
     Object.keys(props.equipment[typedEquipmentItem]).forEach(equipmentItemKey => {
       const typedEquipmentItemKey = equipmentItemKey as CarEquipmentValuesKeys;
-      const equipmentValue = props.equipment[typedEquipmentItem][typedEquipmentItemKey];
+      const equipmentValue = (props.equipment as any)[typedEquipmentItem as any][typedEquipmentItemKey as any];
       if(equipmentValue) {
-        equipmentState.value[typedEquipmentItem] = {
+        (equipmentState.value as any)[typedEquipmentItem as any] = {
           ...equipmentState.value[typedEquipmentItem],
           [typedEquipmentItemKey]: equipmentValue
         };
