@@ -32,8 +32,8 @@ export interface AudioMultimedia {
 }
 
 export interface Comfort {
-    airConditioning: AirConditioningType;
-    tapicerka: UpholsteryType;
+    airConditioning: AirConditioningType | null;
+    tapicerka: UpholsteryType | null;
     elektrycznyFotelKierowcy: boolean;
     elektrycznyFotelPasazera: boolean;
     pogrzewanyFotelKierowcy: boolean;
@@ -73,8 +73,8 @@ export interface Comfort {
 }
 
 export interface DriveAssistance {
-    tempomat: TempomatType,
-    reflektory: HeadlightsType,
+    tempomat: TempomatType | null;
+    reflektory: HeadlightsType | null;
     kontrolaOdleglosciParkowaniePrzod: boolean;
     kontrolaOdleglosciParkowanieTyl: boolean;
     parkAssistant: boolean;
@@ -133,8 +133,8 @@ export interface Performance {
     zawieszeniePneumatyczne: boolean;
     hamulceKompozytCeramiczny: boolean;
     filtrCzastekStalych: boolean;
-    opony: TireType,
-    felgi: RimsType,
+    opony: TireType | null;
+    felgi: RimsType | null;
 }
 
 export interface Safety {
